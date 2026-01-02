@@ -1,0 +1,55 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="geomin",
+    version="0.1.0",
+    author="Kazashim Kuzasuwat",
+    author_email="kazashim@example.com",
+    description="Geophysics library for satellite-based mining activity detection and mineral identification",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    url="https://github.com/kazashim/GeoMin",
+    project_urls={
+        "Bug Tracker": "https://github.com/kazashim/GeoMin/issues",
+        "Documentation": "https://github.com/kazashim/GeoMin#readme",
+        "Source Code": "https://github.com/kazashim/GeoMin",
+    },
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+    ],
+    python_requires=">=3.8",
+    install_requires=[
+        "numpy>=1.20.0",
+        "pandas>=1.3.0",
+        "xarray>=0.20.0",
+        "rasterio>=1.2.0",
+        "geopandas>=0.10.0",
+        "shapely>=1.8.0",
+        "pyproj>=3.0.0",
+        "scikit-learn>=1.0.0",
+        "matplotlib>=3.4.0",
+        "requests>=2.25.0",
+        "pystac-client>=0.4.0",
+        "sentinelsat>=1.1.0",
+        "dask[array]>=2022.0.0",
+        " tqdm>=4.62.0",
+        "pillow>=8.3.0",
+    ],
+    extras_require={
+        "gpu": ["torch>=1.9.0", "segmentation-models-pytorch>=0.2.0"],
+        "interactive": ["folium>=0.12.0", "plotly>=5.0.0"],
+        "dev": ["pytest>=7.0.0", "pytest-cov>=3.0.0", "black>=22.0.0"],
+    },
+    entry_points={
+        "console_scripts": [
+            "geomin=geomin.cli:main",
+        ],
+    },
+)

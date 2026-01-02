@@ -1,0 +1,33 @@
+# Core dependencies
+numpy>=1.20.0
+pandas>=1.3.0
+xarray>=0.20.0
+rasterio>=1.2.0
+geopandas>=0.10.0
+shapely>=1.8.0
+pyproj>=3.0.0
+scikit-learn>=1.0.0
+matplotlib>=3.4.0
+requests>=2.25.0
+pystac-client>=0.4.0
+sentinelsat>=1.1.0
+dask[array]>=2022.0.0
+tqdm>=4.62.0
+pillow>=8.3.0
+
+# Optional dependencies
+rioxarray>=0.9.0  # For enhanced raster handling
+
+# GPU support (optional)
+# torch>=1.9.0
+# segmentation-models-pytorch>=0.2.0
+
+# Interactive visualization (optional)
+# folium>=0.12.0
+# plotly>=5.0.0
+
+# Development dependencies
+# pytest>=7.0.0
+# pytest-cov>=3.0.0
+# black>=22.0.0
+# sphinx>=4.0.0
