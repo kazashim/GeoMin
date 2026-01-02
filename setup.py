@@ -4,7 +4,7 @@ setup(
     name="geomin",
     version="0.1.0",
     author="Kazashim Kuzasuwat",
-    author_email="kazashim@example.com",
+    author_email="kazashimkuzasuwt@gmail.com",
     description="Geophysics library for satellite-based mining activity detection and mineral identification",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
