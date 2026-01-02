@@ -72,6 +72,103 @@ pip install -e .[gpu,interactive,dev]
 
 ---
 
+## How to Run GeoMin
+
+### Step 1: Install GeoMin
+
+```bash
+# Navigate to the project directory
+cd /workspace/geomin
+
+# Install in editable mode
+pip install -e .
+```
+
+### Step 2: Configure API Credentials (Optional)
+
+For real satellite data, set up credentials in your shell profile:
+
+```bash
+# Add to ~/.bashrc or ~/.zshrc
+export GEOMIN_COPERNICUS_USERNAME="your_username"
+export GEOMIN_COPERNICUS_PASSWORD="your_password"
+
+# Apply changes
+source ~/.bashrc
+```
+
+### Step 3: Verify Installation
+
+```bash
+python verify_installation.py
+```
+
+This script will:
+- Test all module imports
+- Verify basic functionality
+- Check API credential status
+
+### Step 4: Run Examples
+
+```bash
+# Run the main example script
+python geomin/examples/quickstart.py
+```
+
+### Step 5: Use in Your Own Scripts
+
+Create a Python file (e.g., `my_analysis.py`):
+
+```python
+import geomin as gm
+from datetime import datetime, timedelta
+
+# Initialize satellite client
+client = gm.SentinelClient()
+client.connect()
+
+# Search for imagery
+from geomin.satellites.base_client import SearchOptions
+
+options = gm.SearchOptions(
+    bbox=[-110.0, 35.0, -109.0, 36.0],  # Mining region
+    start_date=datetime.now() - timedelta(days=90),
+    end_date=datetime.now(),
+    cloud_cover=20
+)
+
+results = client.search(options)
+print(f"Found {len(results)} scenes")
+
+# Select best scene
+best = client.get_best_result(results, ['cloud_cover'])
+print(f"Selected: {best.scene_id}")
+
+# Download and process
+files = client.download(best, bands=['B02', 'B03', 'B04', 'B08', 'B11', 'B12'])
+data = gm.DataLoader.load(list(files.values())[0])
+
+# Calculate mineral indices
+iron = gm.algorithms.spectral.iron_oxide_index(data, red='B04', blue='B02')
+print(f"Iron Oxide Index: {float(iron.mean()):.3f}")
+```
+
+Run your script:
+```bash
+python my_analysis.py
+```
+
+### Quick Commands Summary
+
+| Command | Description |
+|---------|-------------|
+| `pip install -e .` | Install GeoMin |
+| `python verify_installation.py` | Test installation |
+| `python geomin/examples/quickstart.py` | Run examples |
+| `python -c "import geomin; print(geomin.__version__)"` | Check version |
+
+---
+
 ## Setup Guide
 
 ### Step 1: Configure API Credentials
