@@ -8,7 +8,7 @@ Author: Kazashim Kuzasuwat
 GitHub: https://github.com/kazashim/GeoMin
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __author__ = "Kazashim Kuzasuwat"
 
 from .core.config import Config, get_config
@@ -21,14 +21,21 @@ from .core.crs import (
     is_valid_crs,
     get_crs_info
 )
+from .core.cloud_masking import CloudMasker
+from .core.export import GeoExporter
 from .satellites.base_client import SatClient, SearchResult, SearchOptions
+from .satellites.stac_client import STACClient
 from .satellites.landsat import LandsatClient
 from .satellites.sentinel import SentinelClient
 from .satellites.commercial import PlanetClient, MaxarClient
 from .algorithms import spectral
 from .algorithms import terrain
+from .algorithms import advanced_mineralogy
 from .models import change_detection
+from .models import anomaly_detection
+from .models import deep_learning
 from .visualization import static
+from .visualization import interactive
 
 __all__ = [
     # Version
@@ -44,11 +51,14 @@ __all__ = [
     "reproject_raster",
     "is_valid_crs",
     "get_crs_info",
+    "CloudMasker",
+    "GeoExporter",
     
     # Satellites
     "SatClient",
     "SearchResult",
     "SearchOptions",
+    "STACClient",
     "LandsatClient",
     "SentinelClient",
     "PlanetClient",
@@ -57,10 +67,14 @@ __all__ = [
     # Algorithms
     "spectral",
     "terrain",
+    "advanced_mineralogy",
     
     # Models
     "change_detection",
+    "anomaly_detection",
+    "deep_learning",
     
     # Visualization
     "static",
+    "interactive",
 ]
